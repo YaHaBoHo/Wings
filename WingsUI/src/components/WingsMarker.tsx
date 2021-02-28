@@ -42,7 +42,7 @@ export function WingsMarker(props : WingsMarkerProps) {
     useEffect(() => {
         // Props
         const propTrack : boolean = props.track || false;
-        const propRotation : number = (135 + (props.rotation || 0)) % 360;
+        const propRotation : number = (315 + (props.rotation || 0)) % 360;
         // Base markers
         const container = context.layerContainer || context.map;
         const marker = new _WingsMarker(props.position, {icon: planeIcon, rotation: propRotation});
