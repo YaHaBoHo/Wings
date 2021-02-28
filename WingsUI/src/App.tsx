@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Map from "./components/WingsMap";
+import { Altimeter, Attitute, Compass } from "./components/WingsIndicators"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +33,9 @@ function App() {
                 </Grid>
                 <Grid item xs={2} id="infoGrid">
                     <Paper className={classes.wingsPaper}>
-
+                        <Altimeter altitude={4321} pressure={1003} />
+                        <Attitute roll={5} pitch={5} />
+                        <Compass heading={0} />
                     </Paper>
                 </Grid>
             </Grid>

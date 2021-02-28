@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import L, { LatLngExpression, Point, Icon } from "leaflet";
-import { MapContainer, TileLayer, useMap, Marker } from "react-leaflet";
+import { LatLngExpression } from "leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { WingsMarker } from './WingsMarker'
 import "leaflet/dist/leaflet.css";
 

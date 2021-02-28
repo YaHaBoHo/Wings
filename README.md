@@ -3,6 +3,11 @@
 
 ## Notes
 
+### Hardware acceleration
+Rotation trnsforms in UI exclusivey use hardware-accelerated `rotateZ()` transform.
+Any recent browser (released after 2012) should support it.
+
+### Visual Studio and VSCode
 My intial intention was to develop both components using Visual Studio 2019.
 However, ReactJS development experience using Visual Studio 2019 turned out less than statifactory.
 As a result, WingsUI is a classic react/npm project...
