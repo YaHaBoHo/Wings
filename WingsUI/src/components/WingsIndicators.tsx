@@ -7,8 +7,9 @@ import { Component } from 'react'
 import './css/WingsIndicators.css'
 import InstrumentBox from "./img/fi_box.svg"
 import InstrumentRing from "./img/fi_circle.svg"
-import InstrumentNeedleBig from "./img/fi_needle.svg"
-import InstrumentNeedleSmall from "./img/fi_needle_small.svg"
+import InstrumentNeedle from "./img/fi_needle.svg"
+import InstrumentNeedleShort from "./img/fi_needle_small.svg"
+import InstrumentNeedleLong from "./img/fi_needle_long.svg"
 import AltitudePressure from './img/altitude_pressure.svg'
 import AltitudePanel from './img/altitude_ticks.svg'
 import HorizonBack from "./img/horizon_back.svg"
@@ -58,16 +59,18 @@ export class Attitute extends Component<AttituteProps,{}> {
 type AltimeterProps = { altitude: number, pressure: number }
 export class Altimeter extends Component<AltimeterProps,{}> {
   render(){
-    const altiSmall : number = 36 * (this.props.altitude / 1000);
-    const altiBig : number = 90 + .36 * (this.props.altitude % 1000);
+    const altiLong : number = 90 + 0.0036 * this.props.altitude;
+    const altiShort : number = 0.036 * (this.props.altitude % 10000);
+    const altiMain : number = 90 + .36 * (this.props.altitude % 1000);
     const pressure = 2 * (clamp(this.props.pressure, 975, 1040) - 990);
     return (
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Altimeter" />
         <img src={AltitudePressure} className="instrumentLayer" style={{transform: getRotate(pressure)}} alt="" />
         <img src={AltitudePanel} className="instrumentLayer" alt="" />
-        <img src={InstrumentNeedleSmall} className="instrumentLayer" style={{transform: getRotate(altiSmall)}} alt="" />
-        <img src={InstrumentNeedleBig} className="instrumentLayer" style={{transform: getRotate(altiBig)}} alt="" />
+        <img src={InstrumentNeedleLong} className="instrumentLayer" style={{transform: getRotate(altiLong)}} alt="" />
+        <img src={InstrumentNeedle} className="instrumentLayer" style={{transform: getRotate(altiMain)}} alt="" />
+        <img src={InstrumentNeedleShort} className="instrumentLayer" style={{transform: getRotate(altiShort)}} alt="" />
         <img src={InstrumentRing} className="instrumentLayer" alt="" />
       </div>
     )  
@@ -85,7 +88,7 @@ export class VerticalSpeed extends Component<VerticalSpeedProps,{}> {
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Vertical speed" />
         <img src={VerticalSpeedPanel} className="instrumentLayer" alt="" />
-        <img src={InstrumentNeedleBig} className="instrumentLayer" style={{transform: getRotate(vspeed)}} alt="" />
+        <img src={InstrumentNeedle} className="instrumentLayer" style={{transform: getRotate(vspeed)}} alt="" />
         <img src={InstrumentRing} className="instrumentLayer" alt="" />
       </div>
     )  
@@ -102,7 +105,7 @@ export class AirSpeed extends Component<AirSpeedProps,{}> {
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Air speed" />
         <img src={AirSpeedPanel} className="instrumentLayer" alt="" />
-        <img src={InstrumentNeedleBig} className="instrumentLayer" style={{transform: getRotate(speed)}} alt="" />
+        <img src={InstrumentNeedle} className="instrumentLayer" style={{transform: getRotate(speed)}} alt="" />
         <img src={InstrumentRing} className="instrumentLayer" alt="" />
       </div>
     ) 

@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
+
 function App() {
 
     const classes = useStyles();
@@ -33,7 +34,7 @@ function App() {
                 </Grid>
                 <Grid item xs={2} id="infoGrid">
                     <Paper className={classes.wingsPaper}>
-                        <Altimeter altitude={4321} pressure={1003} />
+                        <Altimeter altitude={36242} pressure={1003} />
                         <Attitute roll={5} pitch={5} />
                         <Compass heading={0} />
                     </Paper>
