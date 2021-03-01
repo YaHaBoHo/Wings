@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Map from "./components/WingsMap";
-import { Altimeter, Attitute, Compass } from "./components/WingsIndicators"
+import { Altimeter, VerticalSpeed, Attitute } from "./components/WingsInstruments"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,12 +13,92 @@ const useStyles = makeStyles((theme) => ({
       background: "#DDDDDD"
     },
     wingsPaper: {
-        textAlign: 'center',
+        textAlign: "center",
         color: theme.palette.text.secondary,
         elevation: 3
     }
   }));
 
+
+type PanelState = {
+        ready: boolean,
+        status: string,
+        altitude: number,
+        pressure: number,
+        vspeed: number,
+        pitch: number,
+        roll: number
+}
+
+class Panel extends Component<{},PanelState> {
+
+    ticker : any = -1;
+
+    apiUrl : string = "api/foo"
+
+    constructor(props: {}) {
+        super(props);
+        this.state = {
+            ready: false,
+            status: "Initializing.",
+            altitude: 0,
+            pressure: 1015,
+            vspeed: 0,
+            pitch: 0,
+            roll: 0
+        };
+    }
+
+    tick() {
+
+        fetch(this.apiUrl)
+            .then(res => res.json())
+            .then(
+                // API call succeeded
+                (result) => {
+                    if (result.success) {
+                        this.setState({ 
+                            ready: true, 
+                            status: "Ready",
+                            altitude: result.data.altitude,
+                            pressure: result.data.pressure,
+                            vspeed: result.data.vspeed,
+                            pitch: result.data.pitch,
+                            roll: result.data.roll
+                        });
+                    } 
+                    else {
+                        this.setState({ ready: false, status: `Not ready | Backend error  | ${result.message}` });
+                    }
+                },
+                // API call failed
+                (error) => {
+                    this.setState({
+                        ready: false,
+                        status: `Not ready | API error | ${error}.`
+                    });
+            }
+        )
+    }
+
+    componentDidMount() {
+        this.ticker = setInterval(() => this.tick(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.ticker);
+    }
+
+    render() {
+        return(
+            <div>
+                <Attitute roll={this.state.roll} pitch={this.state.pitch} />
+                <Altimeter altitude={this.state.altitude} pressure={this.state.pressure} />
+                <VerticalSpeed vspeed={this.state.vspeed} />
+            </div>
+        )
+    }
+}
 
 function App() {
 
@@ -34,9 +114,7 @@ function App() {
                 </Grid>
                 <Grid item xs={2} id="infoGrid">
                     <Paper className={classes.wingsPaper}>
-                        <Altimeter altitude={36242} pressure={1003} />
-                        <Attitute roll={5} pitch={5} />
-                        <Compass heading={0} />
+                        <Panel/>
                     </Paper>
                 </Grid>
             </Grid>

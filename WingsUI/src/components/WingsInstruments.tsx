@@ -4,22 +4,22 @@
 */
 
 import { Component } from 'react'
-import './css/WingsIndicators.css'
+import './css/WingsInstruments.css'
 import InstrumentBox from "./img/fi_box.svg"
 import InstrumentRing from "./img/fi_circle.svg"
 import InstrumentNeedle from "./img/fi_needle.svg"
 import InstrumentNeedleShort from "./img/fi_needle_small.svg"
 import InstrumentNeedleLong from "./img/fi_needle_long.svg"
 import AltitudePressure from './img/altitude_pressure.svg'
-import AltitudePanel from './img/altitude_ticks.svg'
+import AltitudeFace from './img/altitude_ticks.svg'
 import HorizonBack from "./img/horizon_back.svg"
 import HorizonBall from "./img/horizon_ball.svg"
 import HorizonCircle from "./img/horizon_circle.svg"
-import HorizonPanel from "./img/horizon_mechanics.svg"
-import VerticalSpeedPanel from "./img/vertical_mechanics.svg"
-import AirSpeedPanel from "./img/speed_mechanics.svg"
+import HorizonFace from "./img/horizon_mechanics.svg"
+import VerticalSpeedFace from "./img/vertical_mechanics.svg"
+import AirSpeedFace from "./img/speed_mechanics.svg"
 import CompassAirplane from "./img/heading_mechanics.svg"
-import CompassPanel from "./img/heading_yaw.svg"
+import CompassFace from "./img/heading_yaw.svg"
 
 
 // Config
@@ -47,7 +47,7 @@ export class Attitute extends Component<AttituteProps,{}> {
         <img src={HorizonBack} className="instrumentLayer" alt="" />
         <img src={HorizonBall} className="instrumentLayer" style={{transform: getRotate(roll), top:`${pitch}%`}} alt="" />
         <img src={HorizonCircle} className="instrumentLayer" style={{transform: getRotate(roll)}} alt="" />
-        <img src={HorizonPanel} className="instrumentLayer" alt="" />
+        <img src={HorizonFace} className="instrumentLayer" alt="" />
         <img src={InstrumentRing} className="instrumentLayer" alt="" />
       </div>
     )  
@@ -67,7 +67,7 @@ export class Altimeter extends Component<AltimeterProps,{}> {
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Altimeter" />
         <img src={AltitudePressure} className="instrumentLayer" style={{transform: getRotate(pressure)}} alt="" />
-        <img src={AltitudePanel} className="instrumentLayer" alt="" />
+        <img src={AltitudeFace} className="instrumentLayer" alt="" />
         <img src={InstrumentNeedleLong} className="instrumentLayer" style={{transform: getRotate(altiLong)}} alt="" />
         <img src={InstrumentNeedle} className="instrumentLayer" style={{transform: getRotate(altiMain)}} alt="" />
         <img src={InstrumentNeedleShort} className="instrumentLayer" style={{transform: getRotate(altiShort)}} alt="" />
@@ -87,7 +87,7 @@ export class VerticalSpeed extends Component<VerticalSpeedProps,{}> {
     return (
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Vertical speed" />
-        <img src={VerticalSpeedPanel} className="instrumentLayer" alt="" />
+        <img src={VerticalSpeedFace} className="instrumentLayer" alt="" />
         <img src={InstrumentNeedle} className="instrumentLayer" style={{transform: getRotate(vspeed)}} alt="" />
         <img src={InstrumentRing} className="instrumentLayer" alt="" />
       </div>
@@ -104,7 +104,7 @@ export class AirSpeed extends Component<AirSpeedProps,{}> {
     return (
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Air speed" />
-        <img src={AirSpeedPanel} className="instrumentLayer" alt="" />
+        <img src={AirSpeedFace} className="instrumentLayer" alt="" />
         <img src={InstrumentNeedle} className="instrumentLayer" style={{transform: getRotate(speed)}} alt="" />
         <img src={InstrumentRing} className="instrumentLayer" alt="" />
       </div>
@@ -121,7 +121,7 @@ export class Compass extends Component<CompassProps,{}> {
     return (
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Compass" />
-        <img src={CompassPanel} className="instrumentLayer" style={{transform: getRotate(heading)}} alt="" />
+        <img src={CompassFace} className="instrumentLayer" style={{transform: getRotate(heading)}} alt="" />
         <img src={CompassAirplane} className="instrumentLayer" alt="" />
         <img src={InstrumentRing} className="instrumentLayer" alt="" />
       </div>
