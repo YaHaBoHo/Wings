@@ -55,11 +55,19 @@ namespace Wings {
 
         #region PublicData
 
-        public Dictionary<string, double> GetUserPosition() {
+        public Dictionary<string, double> GetUserGps() {
             return new Dictionary<string, double> {
                 {"latitude", userStatus.latitude},
                 {"longitude", userStatus.longitude},
                 {"heading", userStatus.heading}
+            };
+        }
+        public Dictionary<string, double> GetUserInstruments() {
+            return new Dictionary<string, double> {
+                {"altitude", userStatus.altitude},
+                {"vspeed", userStatus.vspeed},
+                {"pitch", userStatus.pitch},
+                {"roll", userStatus.roll}
             };
         }
 
@@ -163,6 +171,10 @@ namespace Wings {
             api.AddToDataDefinition(DATA_DEFINITON_ID.UserPosition, "PLANE LATITUDE", "degrees", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
             api.AddToDataDefinition(DATA_DEFINITON_ID.UserPosition, "PLANE LONGITUDE", "degrees", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
             api.AddToDataDefinition(DATA_DEFINITON_ID.UserPosition, "PLANE HEADING DEGREES TRUE", "degrees", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            api.AddToDataDefinition(DATA_DEFINITON_ID.UserPosition, "PLANE ALTITUDE", "feet", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            api.AddToDataDefinition(DATA_DEFINITON_ID.UserPosition, "VERTICAL SPEED", "feet per second", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            api.AddToDataDefinition(DATA_DEFINITON_ID.UserPosition, "PLANE PITCH DEGREES", "degrees", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
+            api.AddToDataDefinition(DATA_DEFINITON_ID.UserPosition, "PLANE BANK DEGREES", "degrees", SIMCONNECT_DATATYPE.FLOAT64, 0.0f, SimConnect.SIMCONNECT_UNUSED);
             api.RequestDataOnSimObject(
                 DATA_DEFINITON_ID.UserPosition,             // Definition ID
                 DATA_REQUEST_ID.UserPosition,               // Request ID
@@ -190,6 +202,10 @@ namespace Wings {
                         userStatus.latitude = flightStatus.Value.latitude;
                         userStatus.longitude = flightStatus.Value.longitude;
                         userStatus.heading = flightStatus.Value.heading;
+                        userStatus.altitude = flightStatus.Value.altitude;
+                        userStatus.vspeed = flightStatus.Value.vspeed;
+                        userStatus.pitch = flightStatus.Value.pitch;
+                        userStatus.roll = flightStatus.Value.roll;
                     }
                     break;
             }

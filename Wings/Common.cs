@@ -13,6 +13,9 @@ namespace Wings {
         public double latitude { get; set; }
         public double longitude { get; set; }
         public double heading { get; set; }
+        public double altitude { get; set; }
+        public double vspeed { get; set; }
+        public double pitch { get; set; }
+        public double roll { get; set; }
     }
-
 }

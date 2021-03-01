@@ -24,7 +24,6 @@ type PanelState = {
         ready: boolean,
         status: string,
         altitude: number,
-        pressure: number,
         vspeed: number,
         pitch: number,
         roll: number
@@ -34,7 +33,7 @@ class Panel extends Component<{},PanelState> {
 
     ticker : any = -1;
 
-    apiUrl : string = "api/foo"
+    apiUrl : string = "api/instruments"
 
     constructor(props: {}) {
         super(props);
@@ -42,7 +41,6 @@ class Panel extends Component<{},PanelState> {
             ready: false,
             status: "Initializing.",
             altitude: 0,
-            pressure: 1015,
             vspeed: 0,
             pitch: 0,
             roll: 0
@@ -61,7 +59,6 @@ class Panel extends Component<{},PanelState> {
                             ready: true, 
                             status: "Ready",
                             altitude: result.data.altitude,
-                            pressure: result.data.pressure,
                             vspeed: result.data.vspeed,
                             pitch: result.data.pitch,
                             roll: result.data.roll
@@ -93,7 +90,7 @@ class Panel extends Component<{},PanelState> {
         return(
             <div>
                 <Attitute roll={this.state.roll} pitch={this.state.pitch} />
-                <Altimeter altitude={this.state.altitude} pressure={this.state.pressure} />
+                <Altimeter altitude={this.state.altitude} />
                 <VerticalSpeed vspeed={this.state.vspeed} />
             </div>
         )

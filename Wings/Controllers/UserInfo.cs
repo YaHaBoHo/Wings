@@ -32,15 +32,26 @@ namespace Wings {
             simConnectClient = SimConnectClient.Instance;
         }
 
-        [HttpGet("/api/position")]
-        public RestResponse GetPosition() {
+        [HttpGet("/api/gps")]
+        public RestResponse GetGps() {
             if (simConnectClient.ready) {
-                return new RestSuccess(simConnectClient.GetUserPosition());
+                return new RestSuccess(simConnectClient.GetUserGps());
             }
             else {
                 return new RestFailure("SimConnect is not ready.");
             }
         }
+
+        [HttpGet("/api/instruments")]
+        public RestResponse GetInstruments() {
+            if (simConnectClient.ready) {
+                return new RestSuccess(simConnectClient.GetUserInstruments());
+            }
+            else {
+                return new RestFailure("SimConnect is not ready.");
+            }
+        }
+
     }
 
 }

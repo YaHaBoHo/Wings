@@ -24,8 +24,6 @@ namespace Wings {
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-
-
         }
     }
 

@@ -46,7 +46,7 @@ namespace Wings {
             return Host.CreateDefaultBuilder()
                 .ConfigureWebHostDefaults(webBuilder => {
                     // webBuilder.UseContentRoot("www").UseWebRoot("gui").UseStartup<RestService>();
-                    webBuilder.UseStartup<RestService>();
+                    webBuilder.UseUrls("http://*:5000").UseStartup<RestService>();
                 })
                 .ConfigureLogging(logBuilder => {
                     logBuilder.ClearProviders().AddSimpleConsole(logOptions => {

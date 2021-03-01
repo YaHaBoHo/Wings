@@ -56,17 +56,17 @@ export class Attitute extends Component<AttituteProps,{}> {
 
 
 // Altimeter
-type AltimeterProps = { altitude: number, pressure: number }
+type AltimeterProps = { altitude: number }
 export class Altimeter extends Component<AltimeterProps,{}> {
   render(){
     const altiLong : number = 90 + 0.0036 * this.props.altitude;
     const altiShort : number = 0.036 * (this.props.altitude % 10000);
     const altiMain : number = 90 + .36 * (this.props.altitude % 1000);
-    const pressure = 2 * (clamp(this.props.pressure, 975, 1040) - 990);
+    // const pressure = 2 * (clamp(this.props.pressure, 975, 1040) - 990);
     return (
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Altimeter" />
-        <img src={AltitudePressure} className="instrumentLayer" style={{transform: getRotate(pressure)}} alt="" />
+        <img src={AltitudePressure} className="instrumentLayer" alt="" />
         <img src={AltitudeFace} className="instrumentLayer" alt="" />
         <img src={InstrumentNeedleLong} className="instrumentLayer" style={{transform: getRotate(altiLong)}} alt="" />
         <img src={InstrumentNeedle} className="instrumentLayer" style={{transform: getRotate(altiMain)}} alt="" />
@@ -83,7 +83,7 @@ export class Altimeter extends Component<AltimeterProps,{}> {
 type VerticalSpeedProps = { vspeed: number }
 export class VerticalSpeed extends Component<VerticalSpeedProps,{}> {
   render(){
-    const vspeed = 90 * clamp(this.props.vspeed, -2, 2);
+    const vspeed = 0.09 * clamp(this.props.vspeed, -2000, 2000);
     return (
       <div className="instrumentBlock">
         <img src={InstrumentBox} className="instrumentLayer" alt="Vertical speed" />

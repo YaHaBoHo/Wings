@@ -21,7 +21,7 @@ export default class Map extends Component<{}, MapState> {
 
     ticker : any = -1;
 
-    apiUrl : string = "api/position"
+    apiUrl : string = "api/gps"
 
     constructor(props: {}) {
         super(props);

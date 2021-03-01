@@ -5,7 +5,8 @@
 
 # Project-specific
 Wings/.local/*.dll
-Wings/wwwroot/
+Wings/wwwroot/*
+!Wings/wwwroot/.placeholder
 WingsUI/build/
 WingsUI/.vscode/
 
